@@ -11,17 +11,24 @@ int main()
 {
     // 这里可以传入对象
 	
-	threadTest * thread = new threadTest( );
- 
-	cout << "线程结束了,按回车键退出" << endl;
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	threadTest * thread = new threadTest();
 
+	//	cout << "线程结束了,按回车键退出" << endl;
+
+	//	//getchar();
+	//	if (nullptr != thread)
+	//	{
+	//		delete thread;
+	//		thread = nullptr;
+	//	}
+	// }
+
+	threadTest * thread = new threadTest();
+//	threadTest * thread1 = new threadTest();
+	 
 	getchar();
-	if (nullptr != thread)
-	{
-		delete thread;
-		thread = nullptr;
-	}
-
 	_CrtDumpMemoryLeaks();//检测内存泄露
 	return 0;
 }

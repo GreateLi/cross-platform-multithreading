@@ -16,6 +16,7 @@ void my_thread::run()
 	while (!IsBreak())
 	{
 		((threadTest*)object)->dealwith_thing(this);
+		((threadTest*)object)->dealwith_thingTT(this);
 
 	} 
 }

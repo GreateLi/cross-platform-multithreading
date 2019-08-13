@@ -16,4 +16,7 @@ MyMutex::~MyMutex()
 {
     pthread_mutex_destroy(&m_mutex);
 }
+
+virtual void MyMutex::lock() { pthread_mutex_lock(&m_mutex); }
+virtual void MyMutex::unlock() { pthread_mutex_unlock(&m_mutex); }
 #endif

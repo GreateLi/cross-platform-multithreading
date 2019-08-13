@@ -10,33 +10,20 @@
 #endif
 #include "MyMutex.h"
 class AutoLock {
-#if defined(WIN32) || defined(_WIN32) || defined(WINDOWS) 
+
+private:
+	MyMutex *m_mutex;
 public:
 	AutoLock(MyMutex * mutex) : m_mutex(mutex)
 	{
-		::EnterCriticalSection(&m_mutex->getMutex());
+		if (m_mutex)
+			m_mutex->lock();
 	}
 	~AutoLock()
 	{
-
-		::LeaveCriticalSection(&m_mutex->getMutex());
+		if (m_mutex)
+			m_mutex->unlock();
 	}
-
-#else
-public:
-	AutoLock(MyMutex* mutex) : m_mutex(mutex)
-	{
-		pthread_mutex_lock(m_mutex->getMutex());
-	}
-	~AutoLock()
-	{
-	 
-		pthread_mutex_unlock(m_mutex->getMutex());
-	}
- private:
-		 pthread_mutex_t  m_mutex;pthread_mutex_t m_mutex;
-#endif
-private:
-	MyMutex *m_mutex;
+ 
 };
 #endif  //_MY_AUTO_LOCK_H
